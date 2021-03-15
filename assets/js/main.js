@@ -18,7 +18,6 @@
 $(document).ready(function() {
   var numeripc= [];
   var numeriUtente = [];
-  var numeriRichiesti= [];
   var punteggio = [];
   //ciclo per generare i 5 numeri
   while (numeripc.length < 5) {
@@ -38,35 +37,20 @@ $(document).ready(function() {
     //inserisco timer per far partire il prompt per l'utente
       setTimeout(prova1,100);
       function prova1(){
-        while (numeriUtente.length < 5) {
-          var numeriRichiesti= parseInt(prompt("Scrivi un numero alla volta e indovina i numeri visualizzati prima"));
-          if (isNaN(numeriRichiesti)) {
-            console.log("Inserisci solo dei numeri");
-          } else if (numeriRichiesti > 100 || numeriRichiesti < 1){
+        for (var i = 0; i < 5; i++) {
+          var numeriUtente= parseInt(prompt("Scrivi un numero alla volta e indovina i numeri visualizzati prima"));
+          if (isNaN(numeriUtente)){
+            console.log("Dammi un numero");
+          } else if (numeriUtente > 100 || numeriUtente < 1){
             console.log("dammi un numero da 1 a 100");
-          } else {
-            numeriUtente.push(numeriRichiesti);
+          } else if (numeripc.includes(numeriUtente)){
+            punteggio.push(numeriUtente);
           }
         }
-        //Paragono i numeri tra pc e numeriUtente
-        setTimeout(prova2,100);
-        function prova2(){
-          // var punteggio = numeriUtente.length;
-          // console.log(numeripc);
-          // console.log(numeriUtente);
-          // console.log(punteggio);
-          for (var i = 5; i < numeriUtente.length; i++) {
-            if (numeripc.includes(numeriUtente) ){
-              punteggio.push(numeriUtente)
-            }
-          }
-          console.log(punteggio);
-        }
+        document.getElementById('result-pc').innerHTML += "I numeri erano: " + numeripc + ",";
+        document.getElementById('result-user').innerHTML += "I numeri che hai indovinato sono " + punteggio.length + " : " + punteggio + ".";
       }
   }
-
-
-
 
 })
 
@@ -82,6 +66,37 @@ $(document).ready(function() {
 //     numeriUtente.push(numeriRichiesti);
 //   }
 // }
+
+//Paragono i numeri tra pc e numeriUtente
+// setTimeout(prova2,100);
+// function prova2(){
+  //   // var punteggio = numeriUtente.length;
+  //   // console.log(numeripc);
+  //   // console.log(numeriUtente);
+  //   // console.log(punteggio);
+  //   for (var i = 0; i < numeriUtente.length; i++) {
+    //     if (numeripc.includes(numeriUtente) ){
+      //       punteggio.push(numeriUtente);
+      //       console.log("ciao");
+      //     }
+      //   }
+      // console.log(numeriUtente);
+      // console.log(numeripc);
+      // console.log(punteggio);
+      // }
+
+      // while (numeripc.length < 5) {
+      //   var numeriRichiesti= parseInt(prompt("Scrivi un numero alla volta e indovina i numeri visualizzati prima"));
+      //   if (isNaN(numeriRichiesti)) {
+      //     console.log("Inserisci solo dei numeri");
+      //   } else if (numeriRichiesti > 100 || numeriRichiesti < 1){
+      //     console.log("dammi un numero da 1 a 100");
+      //   } else if (numeriRichiesti == numeripc){
+      //     // punteggio.push(numeriRichiesti);
+      //     numeriUtente.push(numeriRichiesti);
+      //   }  else {
+      //   }
+      // }
 
 
 
